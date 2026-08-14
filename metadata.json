@@ -1,0 +1,6 @@
+{
+  "name": "NeuroFlex PT - Nerve & Spine Therapy Tracker",
+  "description": "A comprehensive physical therapy and neuro-rehabilitation mobile application designed to alleviate nerve irritation and degenerative spine conditions affecting the neck, back, hands, and legs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
