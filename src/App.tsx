@@ -30,6 +30,7 @@ import { EarlyAccessOnboardingModal } from './components/EarlyAccessOnboardingMo
 import { FeedbackTestimonialModal, UserTestimonial } from './components/FeedbackTestimonialModal';
 import { ClinicalTestimonialsView } from './components/ClinicalTestimonialsView';
 import { PaystackMonetizationModal } from './components/PaystackMonetizationModal';
+import { MriReportInterpreterModal } from './components/MriReportInterpreterModal';
 import { isPlatformOwnerEmail, PLATFORM_OWNER_EMAILS } from './utils/userAccess';
 
 import {
@@ -99,6 +100,7 @@ export default function App() {
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const [isPaystackModalOpen, setIsPaystackModalOpen] = useState(false);
+  const [isMriInterpreterOpen, setIsMriInterpreterOpen] = useState(false);
 
   // Pro Subscription State (Paystack)
   const [isProSubscribed, setIsProSubscribed] = useState<boolean>(() => {
@@ -393,6 +395,17 @@ export default function App() {
                 <span>Pro Upgrade</span>
               </button>
             )}
+
+            {/* MRI Report Clinical Solutions Button */}
+            <button
+              type="button"
+              onClick={() => setIsMriInterpreterOpen(true)}
+              className="px-3 py-1.5 rounded-xl bg-teal-500/15 hover:bg-teal-500/25 border border-teal-500/40 text-xs font-bold text-teal-300 transition-all flex items-center gap-1.5 shadow-sm shadow-teal-500/10"
+              title="MRI Clinical Findings & Action Plan"
+            >
+              <FileText className="w-3.5 h-3.5 text-teal-400" />
+              <span className="hidden sm:inline">MRI Solutions</span>
+            </button>
 
             {/* Acute Flare-Up Rescue Button */}
             <button
@@ -946,6 +959,19 @@ export default function App() {
       <FlareUpRescueModal
         isOpen={isFlareUpModalOpen}
         onClose={() => setIsFlareUpModalOpen(false)}
+      />
+
+      {/* MRI Clinical Findings & Protocol Decoder Modal */}
+      <MriReportInterpreterModal
+        isOpen={isMriInterpreterOpen}
+        onClose={() => setIsMriInterpreterOpen(false)}
+        onSelectStage={(stageId) => {
+          setActiveTab('pathway');
+          setIsMriInterpreterOpen(false);
+        }}
+        onOpenRoutine={(prog) => {
+          setIsMriInterpreterOpen(false);
+        }}
       />
 
       {/* Guided App Walkthrough & Stage-by-Stage Video Practice Demo Modal */}
